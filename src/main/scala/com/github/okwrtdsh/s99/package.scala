@@ -56,4 +56,39 @@ package object S99 {
   def reverse3[T](list: List[T]) = list.foldLeft(List[T]()) { (l, e) =>
     e +: l
   }
+
+  /** P06 */
+  def isPalindrome[T](list: List[T]): Boolean = list match {
+    case Nil      => true
+    case _ :: Nil => true
+    case head :: tail =>
+      if (head == tail.last) isPalindrome(tail.init)
+      else false
+  }
+
+  /** P07 */
+  def flatten(list: List[Any]): List[Any] = list.flatMap {
+    case l: List[_] => flatten(l)
+    case e          => List(e)
+  }
+
+  /** P08 */
+  def compress[T](list: List[T]) = list.foldLeft(List[T]()) { (l, e) =>
+    if (l.isEmpty || l.last != e) l :+ e
+    else l
+  }
+
+  /** P09 */
+  def pack[T](list: List[T]): List[List[T]] = list.foldLeft(List[List[T]]()) {
+    (l, e) =>
+      if (l.isEmpty || l.last.head != e) l :+ List(e)
+      else l.dropRight(1) :+ (l.last :+ e)
+  }
+
+  /** P10 */
+  def encode[T](list: List[T]): List[(Int, T)] =
+    list.foldLeft(List[(Int, T)]()) { (l, e) =>
+      if (l.isEmpty || l.last._2 != e) l :+ (1, e)
+      else l.dropRight(1) :+ (l.last._1 + 1, e)
+    }
 }

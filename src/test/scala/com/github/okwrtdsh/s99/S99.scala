@@ -46,4 +46,33 @@ class S99Spec extends FlatSpec with Matchers {
   it should "reverse3" in {
     reverse3(List(1, 1, 2, 3, 5, 8)) should be(List(8, 5, 3, 2, 1, 1))
   }
+
+  "P06" should "isPalindrome" in {
+    isPalindrome(List(1, 2, 3, 2, 1)) should be(true)
+  }
+
+  "P07" should "flatten" in {
+    flatten(List(List(1, 1), 2, List(3, List(5, 8)))) should be(
+      List(1, 1, 2, 3, 5, 8))
+  }
+
+  "P08" should "compress" in {
+    compress(List('a, 'a, 'a, 'a, 'b, 'c, 'c, 'a, 'a, 'd, 'e, 'e, 'e, 'e)) should be(
+      List('a, 'b, 'c, 'a, 'd, 'e))
+  }
+
+  "P09" should "pack" in {
+    pack(List('a, 'a, 'a, 'a, 'b, 'c, 'c, 'a, 'a, 'd, 'e, 'e, 'e, 'e)) should be(
+      List(List('a, 'a, 'a, 'a),
+           List('b),
+           List('c, 'c),
+           List('a, 'a),
+           List('d),
+           List('e, 'e, 'e, 'e)))
+  }
+
+  "P10" should "encode" in {
+    encode(List('a, 'a, 'a, 'a, 'b, 'c, 'c, 'a, 'a, 'd, 'e, 'e, 'e, 'e)) should be(
+      List((4, 'a), (1, 'b), (2, 'c), (2, 'a), (1, 'd), (4, 'e)))
+  }
 }
